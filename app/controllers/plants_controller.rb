@@ -12,7 +12,7 @@ class PlantsController < ApplicationController
   end
 
   def destroy
-    @plant = Plat.find(params[:id])
+    @plant = Plant.find(params[:id])
     @garden = @plant.garden
     @plant.destroy
     redirect_to garden_path(@garden)
