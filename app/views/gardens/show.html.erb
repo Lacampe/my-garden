@@ -1,0 +1,27 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= @garden.photo_url %>');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= simple_form_for [@garden, @plant] do |f| %>
+          <%= f.input :name, placeholder: 'Type in a new plant name...', label: false %>
+          <%= f.input :photo_url, placeholder: 'Paste an image url for you plant...', label: false %>
+          <%= f.submit 'Add a new plant to your garden', class: 'btn btn-info' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <% @garden.plants.each do |plant| %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= plant.photo_url %>);">
+          <div class="card-description">
+            <h2><%= plant.name %></h2>
+          </div>
+          <%= link_to 'X', plant_path(plant), method: :delete, class: 'card-user btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
